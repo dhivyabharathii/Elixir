@@ -28,3 +28,34 @@ IO.puts "Deleted ID"
 for %{deleted: true} = item <- items do
   IO.puts Map.fetch!(item, :id)
 end
+
+#tuple
+person = {:person, "Bob", 25}
+{:person, name, age} = person
+
+IO.puts name
+
+expected_name ="Bob"
+{^expected_name, _} = {"Bob", 25}
+# {^expected_name, _} = {"Alice", 30}
+
+#map
+%{name: name, age: age} = %{name: "ob", age: 25}
+IO.puts name
+
+# Multiclause
+defmodule Geometry do
+  def area({:rectangle, a, b}) do
+  IO.puts a * b
+  end
+  def area({:square, a}) do
+  IO.puts a * a
+  end
+  def area({:circle, r}) do
+  IO.puts r * r * 3.14
+  end
+end
+
+Geometry.area({:rectangle, 4, 5})
+Geometry.area({:square, 5})
+Geometry.area({:circle, 4})

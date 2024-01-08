@@ -18,3 +18,15 @@ end
 
 IO.inspect MyList.span(1, 40)
 IO.puts Recursion.sum_list([2,3,4],1)
+
+
+
+# Tail Recursive
+defmodule Reverse do
+  def rev(num,acc\\0)
+  def rev(0,acc), do: acc
+  def rev(num,acc) do
+    rev(div(num,10),acc*10 + rem(num,10))
+  end
+end
+IO.puts Reverse.rev(123)
