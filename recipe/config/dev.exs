@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :phoenix_example, PhoenixExample.Repo,
+config :recipe, Recipe.Repo,
   username: "postgres",
   password: "Dhivya_14$",
   hostname: "localhost",
-  database: "phoenix_example_dev",
+  database: "recipe",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,14 +16,14 @@ config :phoenix_example, PhoenixExample.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :phoenix_example, PhoenixExampleWeb.Endpoint,
+config :recipe, RecipeWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "Fk4PnHFXRpcZ31xw526BinmIZ0JoXfZoZzh7CUek/MOyjaHWJs0T67dyyU5yodx1",
+  secret_key_base: "eaD4hzJUacSxoNCoBlyY3HXYuURGBRrKZIGtfxbYqUrD5g9U1S+D/LjiIaXfrSQ+",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
@@ -53,17 +53,17 @@ config :phoenix_example, PhoenixExampleWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :phoenix_example, PhoenixExampleWeb.Endpoint,
+config :recipe, RecipeWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/phoenix_example_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/recipe_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :phoenix_example, dev_routes: true
+config :recipe, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
