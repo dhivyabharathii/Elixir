@@ -5,7 +5,6 @@ defmodule Todo.Tasks.Task do
   schema "tasks" do
     field :completed, :boolean, default: false
     field :text, :string
-
     timestamps(type: :utc_datetime)
   end
 

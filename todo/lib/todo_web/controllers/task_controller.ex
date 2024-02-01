@@ -3,15 +3,19 @@ defmodule TodoWeb.TaskController do
 
   alias Todo.Tasks
   alias Todo.Tasks.Task
-
+  alias Todo.KeyResult
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
     render(conn, :index, tasks: tasks)
   end
-
+  def change_key_result(%KeyResult{} = key_results, attrs \\ %{}) do
+    KeyResult.changeset(key_results, attrs)
+  end
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
+    # key_result_changeset = KeyResult.change_key_result(%KeyResult{})
     render(conn, :new, changeset: changeset)
+
   end
 
   def create(conn, %{"task" => task_params}) do
@@ -28,7 +32,9 @@ defmodule TodoWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
-    render(conn, :show, task: task)
+    key_results = Todo.Repo.get!(KeyResult, id)
+
+    render(conn, :show, task: task, key_results: key_results )
   end
 
   def edit(conn, %{"id" => id}) do

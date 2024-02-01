@@ -11,6 +11,7 @@
 <.list>
   <:item title="Text"><%= @task.text %></:item>
   <:item title="Completed"><%= @task.completed %></:item>
+  <:item title="Sub Task"><%= @key_results.description %></:item>
 </.list>
 
 <.back navigate={~p"/tasks"}>Back to tasks</.back>
