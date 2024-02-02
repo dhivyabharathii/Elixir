@@ -236,19 +236,19 @@ defmodule Ecommerce.ShoppingCart do
           on_conflict: [inc: [quantity: 1]],
           conflict_target: [:cart_id, :product_id]
         )
-      end
+  end
 
-      def remove_item_from_cart(%Cart{} = cart, product_id) do
-        {1, _} =
-          Repo.delete_all(
-            from(i in CartItem,
-              where: i.cart_id == ^cart.id,
-              where: i.product_id == ^product_id
-            )
-          )
+  def remove_item_from_cart(%Cart{} = cart, product_id) do
+    {1, _} =
+      Repo.delete_all(
+        from(i in CartItem,
+          where: i.cart_id == ^cart.id,
+          where: i.product_id == ^product_id
+        )
+      )
 
-        {:ok, reload_cart(cart)}
-      end
+    {:ok, reload_cart(cart)}
+  end
 
       def total_item_price(%CartItem{} = item) do
         Decimal.mult(item.product.price, item.quantity)
@@ -268,5 +268,11 @@ defmodule Ecommerce.ShoppingCart do
         shipping_cost=5
         Decimal.mult(shipping_cost, item.quantity)
       end
+
       
+      def prune_cart_items(%Cart{} = cart) do
+        {_, _} = Repo.delete_all(from(i in CartItem, where: i.cart_id == ^cart.id))
+        {:ok, reload_cart(cart)}
+      end
+
 end
