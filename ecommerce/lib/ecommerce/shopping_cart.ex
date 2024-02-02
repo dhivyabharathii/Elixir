@@ -255,10 +255,18 @@ defmodule Ecommerce.ShoppingCart do
       end
 
       def total_cart_price(%Cart{} = cart) do
+        shipping_cost=5
         Enum.reduce(cart.items, 0, fn item, acc ->
           item
           |> total_item_price()
           |> Decimal.add(acc)
+          |> Decimal.add(shipping_cost)
         end)
       end
+
+      def shipping_price(%CartItem{}= item) do
+        shipping_cost=5
+        Decimal.mult(shipping_cost, item.quantity)
+      end
+      
 end

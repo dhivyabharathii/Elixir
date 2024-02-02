@@ -13,12 +13,13 @@
 	<% item = item_form.data %>
       <.input field={item_form[:quantity]} type="number" label={item.product.title} />
       <%= currency_to_str(ShoppingCart.total_item_price(item)) %>
+      <b>Shipping Cost </b>: <%= currency_to_str(ShoppingCart.shipping_price(item)) %>
     </.inputs_for>
     <:actions>
       <.button>Update cart</.button>
     </:actions>
-  </.simple_form>
 
+  </.simple_form>
   <b>Total</b>: <%= currency_to_str(ShoppingCart.total_cart_price(@cart)) %>
 <% end %>
 
