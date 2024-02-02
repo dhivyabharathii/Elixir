@@ -4,7 +4,14 @@
     <.link href={~p"/products/new"}>
       <.button>New Product</.button>
     </.link>
+    <.link href={~p"/cart"}>
+      <.button>My Cart</.button>
+    </.link>
+    <.link href={~p"/order/#{@current_uuid}"}>
+        <.button>My Orders</.button>
+    </.link>
   </:actions>
+  
 </.header>
 
 <.table id="products" rows={@products} row_click={&JS.navigate(~p"/products/#{&1}")}>
@@ -25,3 +32,4 @@
     </.link>
   </:action>
 </.table>
+

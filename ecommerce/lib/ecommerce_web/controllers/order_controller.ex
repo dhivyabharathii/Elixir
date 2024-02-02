@@ -20,4 +20,8 @@ defmodule EcommerceWeb.OrderController do
     order = Orders.get_order!(conn.assigns.current_uuid, id)
     render(conn, :show, order: order)
   end
+  def show_order(conn, _) do
+    order = Orders.get_all_order!(conn.assigns.current_uuid)
+    render(conn, :show_order, order: order)
+  end
 end

@@ -40,6 +40,12 @@ def get_order!(user_uuid, id) do
   |> Repo.get_by!(id: id, user_uuid: user_uuid)
   |> Repo.preload([line_items: [:product]])
 end
+
+def get_all_order!(user_uuid) do
+  Order
+  |> where([o], o.user_uuid == ^user_uuid)
+  |> Repo.all()
+end
   @doc """
   Creates a order.
 
