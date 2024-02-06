@@ -1,5 +1,5 @@
 defmodule EcommerceWeb.CartLive.Index do
-  use Phoenix.LiveComponent
+  use Phoenix.LiveView
   alias EcommerceWeb.CartLive.ProductItem
 
   def mount(_params,_session,socket) do
