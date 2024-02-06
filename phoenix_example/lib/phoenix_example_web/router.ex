@@ -20,6 +20,7 @@ defmodule PhoenixExampleWeb.Router do
     get "/", PageController, :home
     get "/hello", HelloController, :index
     get "/hello/:message", HelloController, :show
+    live "/thermostat", Live
   end
 
   # Other scopes may use custom stacks.
