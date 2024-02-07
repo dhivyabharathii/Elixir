@@ -39,6 +39,11 @@ defmodule Ecommerce.Catalog do
   def get_product!(id) do
     Product |> Repo.get!(id) |> Repo.preload(:categories)
   end
+  def fetch_all_titles do
+    from(p in Product, select: p.title)
+    |> Repo.all()
+  end
+
   @doc """
   Creates a product.
 

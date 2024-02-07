@@ -1,9 +1,12 @@
 defmodule EcommerceWeb.CartLive.Index do
   use Phoenix.LiveView
   alias EcommerceWeb.CartLive.ProductItem
+  alias Ecommerce.Catalog
+  alias Ecommerce.Repo
 
   def mount(_params,_session,socket) do
-    {:ok, assign(socket, total_items: 0)}
+    product=Catalog.fetch_all_titles()
+    {:ok, assign(socket, total_items: 0, product: product)}
   end
 
   def handle_params(params, _,socket) do
@@ -13,10 +16,10 @@ defmodule EcommerceWeb.CartLive.Index do
 
   def render(assigns) do
     ~H"""
-    Hii <%= @name %> <%= self() |> :erlang.pid_to_list() %>
-    <div >
-    <h2> Shopping Cart - Total Items: <%= @total_items %></h2>
-      <.live_component :for={id <- 1..3} module={ProductItem} id={id} />
+
+    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md" >
+    <h2 class="text-2xl font-semibold mb-3"> Shopping Cart - Total Items: <%= @total_items %></h2>
+      <.live_component  :for={id <-@product} module={ProductItem} id={id} />
     </div>
     """
 

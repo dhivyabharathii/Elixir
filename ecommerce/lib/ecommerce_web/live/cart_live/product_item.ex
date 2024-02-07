@@ -8,11 +8,13 @@ defmodule EcommerceWeb.CartLive.ProductItem do
 
   def render(assigns) do
     ~H"""
-    <div>
-     <span>
-     Product Name <%= @id %>
+    <div class="flex items-center justify-between mb-4">
+     <span class="basis-1/2 font-medium">
+     <%= @id %>
      </span>
-    <button phx-click="add" phx-target={@myself}>+</button>
+     <span>
+     <%= @amount %></span>
+    <button phx-click="add" phx-target={@myself} class="px-3 py-1 bg-blue-300 text-white rounded hover:bg-blue-600">+</button>
     </div>
     """
   end
